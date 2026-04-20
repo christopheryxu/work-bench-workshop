@@ -4,16 +4,14 @@
 <meta charset="UTF-8">
 <link href="https://fonts.googleapis.com/css2?family=Barlow+Condensed:wght@600&display=swap" rel="stylesheet">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Workshop Pegboard</title>
+<title>The GTM Workshop</title>
 <style>
   * { margin: 0; padding: 0; box-sizing: border-box; }
 
   body {
     min-height: 100vh;
-    /* The pegboard: repeating holes on a white surface */
     background-color: #ffffff;
     background-image:
-      /* Hole shadow (inset illusion) - offset dark crescent */
       radial-gradient(
         circle 1.75px at 10.5px 10.5px,
         transparent 1.25px,
@@ -21,7 +19,6 @@
         rgba(0,0,0,0.06) 1.75px,
         transparent 1.75px
       ),
-      /* Hole highlight rim (top-left light edge) */
       radial-gradient(
         circle 1.6px at 9.75px 9.75px,
         transparent 1.1px,
@@ -29,7 +26,6 @@
         rgba(255,255,255,0.9) 1.6px,
         transparent 1.6px
       ),
-      /* Main hole */
       radial-gradient(
         circle 1.5px at 10px 10px,
         #1a1a1a 1px,
@@ -37,7 +33,6 @@
         #3a3a3a 1.5px,
         transparent 1.5px
       ),
-      /* Board surface texture - fine noise effect */
       radial-gradient(
         circle 0.25px at 3.5px 6.5px,
         rgba(0,0,0,0.03) 0.25px,
@@ -61,12 +56,9 @@
       20px 20px,
       20px 20px;
     background-position: 0 0;
-
-    /* Subtle vignette via box-shadow inset */
     box-shadow: inset 0 0 200px rgba(0,0,0,0.08);
   }
 
-  /* Overlay for slight grain texture */
   body::before {
     content: '';
     position: fixed;
@@ -88,7 +80,7 @@
     border-bottom: 1px solid #1a1a1a;
     display: flex;
     align-items: center;
-    padding: 0 16px;
+    padding: 0 16px 0 20px;
   }
   #logo-link {
     display: flex;
@@ -139,17 +131,88 @@
   #title span:last-child {
     font-size: 46px;
   }
+  #menu {
+    margin-left: auto;
+    display: flex;
+    align-items: center;
+    gap: 28px;
+    padding-right: 8px;
+  }
+  #menu a {
+    font-family: 'Barlow Condensed', sans-serif;
+    font-weight: 600;
+    font-size: 28px;
+    text-transform: uppercase;
+    text-decoration: none;
+    color: #1a1a1a;
+    letter-spacing: 0.05em;
+    padding: 6px 12px;
+    border: 1px solid transparent;
+    transition: color 0.2s ease, background-color 0.2s ease, border-color 0.2s ease;
+  }
+  #menu a:hover,
+  #menu a.active {
+    color: #fff;
+    background-color: #1a1a1a;
+    border-color: #1a1a1a;
+  }
   #trail-canvas {
     position: fixed;
     inset: 0;
     pointer-events: none;
     z-index: 2;
   }
+
+  /* Pages */
+  .page {
+    display: none;
+    position: relative;
+    z-index: 2;
+    padding-top: 140px;
+    padding-bottom: 60px;
+  }
+  .page.active {
+    display: block;
+  }
+
+  /* Home */
+  #page-home {
+    min-height: 100vh;
+  }
+
+  /* Artifacts */
+  #slides {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 40px;
+  }
+  .slide {
+    width: 60vw;
+    aspect-ratio: 16 / 9;
+    background: #fff;
+    border: 1px solid #1a1a1a;
+    flex-shrink: 0;
+    position: relative;
+    container-type: inline-size;
+    overflow: hidden;
+    padding: 3cqw;
+    font-size: 2cqw;
+  }
+  .slide-number {
+    position: absolute;
+    bottom: 1.5cqw;
+    right: 2cqw;
+    font-family: 'Barlow Condensed', sans-serif;
+    font-weight: 600;
+    font-size: 2.5cqw;
+    color: #1a1a1a;
+  }
 </style>
 </head>
 <body>
   <div id="menubar">
-    <a href="/" id="logo-link" onclick="location.reload(); return false;">
+    <a href="#home" id="logo-link">
       <svg id="logo" viewBox="0 0 50 50" fill="none" xmlns="http://www.w3.org/2000/svg">
         <path fill-rule="evenodd" clip-rule="evenodd" d="M2.82595 47.5227C2.66616 45.45 0.00295911 0.915318 0 0.280501C0 0.159442 1.73108 0.0590527 3.84684 0.0590527C7.31196 0.0590527 7.69369 0.109248 7.69664 0.575765C7.70256 2.88473 8.60805 33.8461 8.67019 33.9081C8.71458 33.9524 9.05783 27.3828 9.43068 19.3132C9.80057 11.2407 10.1823 3.60517 10.277 2.34735L10.4457 0.0590527H14.6594H18.8732L19.0596 2.93788C19.1602 4.52049 19.5094 11.9287 19.8349 19.3988C20.4948 34.5105 20.5895 36.037 20.6694 32.8334C20.699 31.6169 20.9179 24.2412 21.1576 16.4462C21.3944 8.65123 21.5926 1.77454 21.5956 1.16629L21.6015 0.0590527H25.3004H28.9993V1.46156C28.9993 2.2322 28.5347 10.6384 27.9636 20.137C27.3954 29.6356 26.774 40.2327 26.5817 43.6843L26.2355 49.9587H21.1073H15.9792L15.9703 48.9991C15.9437 46.3151 14.5588 17.7365 14.4493 17.6273C14.3813 17.5564 14.0913 23.7067 13.8102 31.295C13.5261 38.8804 13.2154 46.1822 13.1177 47.5227L12.9372 49.9587H7.9748H3.01237L2.82595 47.5227ZM30.4788 25V0L36.7669 0.118105C41.9247 0.21259 43.2681 0.327743 44.2387 0.74997C46.5616 1.76568 47.4937 2.56857 48.2335 3.60199C48.2335 3.60199 49.1212 4.78305 49.2692 6.11173C49.4171 7.44042 49.5621 12.159 49.5621 12.159C49.5592 17.2316 49.5089 17.7365 48.8756 19.139C48.1506 20.7452 46.8575 22.1537 45.4519 22.8652L44.5938 23.2993L46.1828 24.1555C48.0737 25.1713 49.2603 26.8897 49.7071 29.2577C50.1125 31.3984 50.0918 40.6844 49.6775 42.6361C48.9851 45.887 47.47 47.9184 44.8305 49.1319C43.4545 49.7638 42.8982 49.8169 36.9149 49.9055L30.4788 50V25ZM40.7174 42.5475C41.2293 41.9806 41.2885 41.3281 41.3684 35.2161C41.4512 29.1071 41.4098 28.4516 40.9245 27.8788C40.6315 27.5304 40.0249 27.1613 39.5781 27.055L38.7643 26.8631V35.0154V43.1676H39.4597C39.8385 43.1676 40.4066 42.8871 40.7174 42.5475ZM40.7558 19.3398C41.1849 18.6843 41.2973 17.7365 41.3832 14.1107C41.5045 8.82544 41.25 7.64438 39.9006 7.17196C39.3887 6.9948 38.9241 6.85012 38.8679 6.85012C38.8117 6.85012 38.7643 9.8382 38.7643 13.4936V20.137H39.4982C39.9657 20.137 40.4185 19.8506 40.7558 19.3398Z" fill="black"/>
       </svg>
@@ -157,13 +220,83 @@
         <path style="transition: fill 0.2s ease;" fill-rule="evenodd" clip-rule="evenodd" d="M47.6988 14.3021C46.2248 15.7503 44.2466 16.5578 42.189 16.5511C41.2553 16.5507 40.329 16.3851 39.452 16.0619C39.4243 16.0533 39.3954 16.0492 39.3665 16.0497C39.288 16.0501 39.2128 16.0817 39.1574 16.1377L16.0233 39.162C15.9952 39.1898 15.9728 39.223 15.9575 39.2597C15.9422 39.2963 15.9343 39.3357 15.9342 39.3754C15.9337 39.4038 15.9378 39.4321 15.9463 39.4592C16.2447 40.3146 16.3976 41.2147 16.3985 42.1216C16.4016 43.1674 16.1996 44.2035 15.8043 45.1704C15.409 46.1372 14.828 47.0156 14.0949 47.7552C12.6379 49.2002 10.6745 50.0069 8.63121 50C8.20187 49.9997 7.77328 49.9641 7.34968 49.8936L5.46135 49.5817L10.4147 44.6501C10.4431 44.6227 10.4658 44.5899 10.4815 44.5536C10.4973 44.5173 10.5056 44.4781 10.5062 44.4385C10.5059 44.4112 10.5022 44.3841 10.4953 44.3578L9.52536 40.6179C9.51217 40.5663 9.48564 40.5191 9.44848 40.4812C9.41131 40.4433 9.36483 40.416 9.31379 40.4021L5.62018 39.3778C5.59258 39.3699 5.56402 39.3657 5.53531 39.3656C5.45733 39.3665 5.38284 39.3984 5.32799 39.4543L0.3777 44.3841L0.0897513 42.4762C0.0301709 42.0822 0.000179511 41.6842 3.28342e-05 41.2857C-0.00296128 40.2475 0.198846 39.219 0.593704 38.2602C0.988562 37.3014 1.56858 36.4315 2.29998 35.701C3.77441 34.2531 5.7527 33.4459 7.8104 33.4526C8.74385 33.4534 9.66995 33.6189 10.5468 33.9417C10.5746 33.9509 10.6037 33.9553 10.6329 33.9546C10.7114 33.9535 10.7863 33.9217 10.842 33.8659L33.9743 10.838C34.0026 10.8103 34.0251 10.7771 34.0405 10.7404C34.0559 10.7038 34.0639 10.6644 34.064 10.6246C34.0647 10.5962 34.0608 10.5679 34.0525 10.5408C33.5565 9.12416 33.4664 7.59516 33.7926 6.12921C34.1188 4.66326 34.848 3.31974 35.8966 2.25275L35.9087 2.24052C36.7873 1.37632 37.8552 0.732826 39.0261 0.362087C40.197 -0.00865118 41.4379 -0.0962274 42.6485 0.106441L44.5368 0.421356L39.7818 5.15547C39.7533 5.18298 39.7306 5.21589 39.7149 5.25231C39.6992 5.28874 39.6908 5.32794 39.6902 5.36766C39.6905 5.39472 39.6941 5.42163 39.7011 5.44776L40.6711 9.18638C40.6842 9.23811 40.7107 9.28539 40.7479 9.32342C40.785 9.36144 40.8315 9.38885 40.8826 9.40285L44.5768 10.4283C44.6041 10.436 44.6322 10.4402 44.6605 10.4405C44.7386 10.4394 44.813 10.4073 44.8678 10.3513L49.6229 5.61837L49.9103 7.52681C49.9698 7.92103 49.9998 8.31922 50 8.71798C50.003 9.75622 49.801 10.7847 49.406 11.7434C49.0109 12.7021 48.4305 13.5719 47.6988 14.3021Z" fill="black"/>
       </svg>
       <div id="title">
-        <span>THE GTM</span>
+        <span>THE AI GTM</span>
         <span>WORKSHOP</span>
       </div>
     </a>
+    <nav id="menu">
+      <a href="#voices">VOICES</a>
+      <a href="#events">EVENTS</a>
+      <a href="#artifacts">ARTIFACTS</a>
+    </nav>
   </div>
+
+  <!-- Page: Home -->
+  <div id="page-home" class="page"></div>
+
+  <!-- Page: Voices -->
+  <div id="page-voices" class="page"></div>
+
+  <!-- Page: Events -->
+  <div id="page-events" class="page"></div>
+
+  <!-- Page: Artifacts -->
+  <div id="page-artifacts" class="page">
+    <div id="slides">
+      <div class="slide"><span class="slide-number">1</span></div>
+
+      <div class="slide"><span class="slide-number">2</span></div>
+
+      <div class="slide"><span class="slide-number">3</span></div>
+
+      <div class="slide"><span class="slide-number">4</span></div>
+
+      <div class="slide"><span class="slide-number">5</span></div>
+
+      <div class="slide"><span class="slide-number">6</span></div>
+
+      <div class="slide"><span class="slide-number">7</span></div>
+
+      <div class="slide"><span class="slide-number">8</span></div>
+
+      <div class="slide"><span class="slide-number">9</span></div>
+
+      <div class="slide"><span class="slide-number">10</span></div>
+    </div>
+  </div>
+
   <canvas id="trail-canvas"></canvas>
   <script>
+    // Router
+    function navigate() {
+      var hash = location.hash.replace('#', '') || 'home';
+      var pages = document.querySelectorAll('.page');
+      pages.forEach(function(p) { p.classList.remove('active'); });
+      var target = document.getElementById('page-' + hash);
+      if (target) {
+        target.classList.add('active');
+      } else {
+        document.getElementById('page-home').classList.add('active');
+      }
+
+      // Update active menu item
+      var links = document.querySelectorAll('#menu a');
+      links.forEach(function(a) {
+        var linkHash = a.getAttribute('href').replace('#', '');
+        if (linkHash === hash) {
+          a.classList.add('active');
+        } else {
+          a.classList.remove('active');
+        }
+      });
+
+      window.scrollTo(0, 0);
+    }
+
+    window.addEventListener('hashchange', navigate);
+    navigate();
+
+    // Trail canvas
     const canvas = document.getElementById('trail-canvas');
     const ctx = canvas.getContext('2d');
     const GRID = 20;
@@ -171,11 +304,15 @@
     const SNAP_RADIUS = 8;
     const FADE_TIME = 1000;
 
-    // Each segment: { x1, y1, x2, y2, time }
-    // Each dot: { x, y, time }
     const segments = [];
     const dots = [];
     let lastHole = null;
+    let overSlide = false;
+
+    document.querySelectorAll('.slide').forEach(function(el) {
+      el.addEventListener('mouseenter', function() { overSlide = true; lastHole = null; });
+      el.addEventListener('mouseleave', function() { overSlide = false; });
+    });
 
     function resize() {
       canvas.width = window.innerWidth;
@@ -185,6 +322,7 @@
     window.addEventListener('resize', resize);
 
     document.addEventListener('mousemove', (e) => {
+      if (overSlide) return;
       const nearestX = Math.round((e.clientX - CENTER) / GRID) * GRID + CENTER;
       const nearestY = Math.round((e.clientY - CENTER) / GRID) * GRID + CENTER;
 
@@ -198,7 +336,6 @@
           const now = Date.now();
           dots.push({ x: nearestX, y: nearestY, time: now });
           if (lastHole) {
-            // Only connect if movement is purely horizontal or vertical
             if (lastHole.x === nearestX || lastHole.y === nearestY) {
               segments.push({
                 x1: lastHole.x, y1: lastHole.y,
@@ -220,7 +357,6 @@
       ctx.clearRect(0, 0, canvas.width, canvas.height);
       const now = Date.now();
 
-      // Draw trail segments
       for (let i = segments.length - 1; i >= 0; i--) {
         const s = segments[i];
         const age = now - s.time;
@@ -234,7 +370,6 @@
         ctx.stroke();
       }
 
-      // Draw visited dots
       for (let i = dots.length - 1; i >= 0; i--) {
         const d = dots[i];
         const age = now - d.time;
