@@ -2,7 +2,7 @@
 <html lang="en">
 <head>
 <meta charset="UTF-8">
-<link href="https://fonts.googleapis.com/css2?family=Barlow+Condensed:wght@600&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Barlow+Condensed:wght@400;600&family=Inter:wght@400&family=Instrument+Serif:ital@0;1&display=swap" rel="stylesheet">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>The GTM Workshop</title>
 <style>
@@ -135,13 +135,13 @@
     margin-left: auto;
     display: flex;
     align-items: center;
-    gap: 28px;
+    gap: 1.5vw;
     padding-right: 8px;
   }
   #menu a {
     font-family: 'Barlow Condensed', sans-serif;
     font-weight: 600;
-    font-size: 28px;
+    font-size: clamp(18px, 1.5vw, 28px);
     text-transform: uppercase;
     text-decoration: none;
     color: #1a1a1a;
@@ -155,6 +155,11 @@
     color: #fff;
     background-color: #1a1a1a;
     border-color: #1a1a1a;
+  }
+  #menu a.disabled {
+    opacity: 0.35;
+    pointer-events: none;
+    cursor: default;
   }
   #trail-canvas {
     position: fixed;
@@ -187,6 +192,40 @@
     align-items: center;
     gap: 40px;
   }
+  .slide-wrapper {
+    display: flex;
+    align-items: center;
+    gap: 16px;
+  }
+  .slide-nav {
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+  }
+  .slide-nav-btn {
+    width: 40px;
+    height: 72px;
+    border: 1px solid #1a1a1a;
+    background: #fff;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-family: 'Barlow Condensed', sans-serif;
+    font-size: 16px;
+    color: #1a1a1a;
+    transition: background 0.2s;
+  }
+  .slide-nav-btn:hover {
+    background: #1a1a1a;
+    color: #fff;
+  }
+  .slide-nav-btn svg {
+    transition: transform 0.25s ease;
+  }
+  .slide-nav-btn:hover svg {
+    transform: scaleY(1.2);
+  }
   .slide {
     width: 60vw;
     aspect-ratio: 16 / 9;
@@ -198,6 +237,322 @@
     overflow: hidden;
     padding: 3cqw;
     font-size: 2cqw;
+  }
+  .slide-flex {
+    display: flex;
+    flex-direction: column;
+  }
+  .slide-header {
+    display: flex;
+    align-items: flex-start;
+    gap: 16cqw;
+  }
+  .slide-logo-wrap {
+    flex-shrink: 0;
+    align-self: stretch;
+  }
+  .slide-logo {
+    height: 100%;
+    width: auto;
+    display: block;
+    transform: scale(0.85);
+  }
+  .slide-title {
+    font-family: 'Barlow Condensed', sans-serif;
+    font-weight: 600;
+    font-size: 6cqw;
+    line-height: 1.1;
+    color: #1a1a1a;
+    text-align: left;
+    max-width: 60%;
+    word-wrap: break-word;
+  }
+  .slide-title-full {
+    max-width: 100%;
+    white-space: nowrap;
+  }
+  .underline-pink {
+    text-decoration: underline;
+    text-decoration-color: #764AF8;
+    text-decoration-thickness: 3px;
+    text-underline-offset: 0.15em;
+  }
+  .highlight {
+    background-color: #DED4FE;
+  }
+  .underline-orange {
+    text-decoration: underline;
+    text-decoration-color: #F6673A;
+    text-decoration-thickness: 3px;
+    text-underline-offset: 0.15em;
+  }
+  .underline-green {
+    text-decoration: underline;
+    text-decoration-color: #C7EF2B;
+    text-decoration-thickness: 3px;
+    text-underline-offset: 0.15em;
+  }
+  .highlight-pink {
+    background-color: #CE3C86;
+  }
+  .highlight-orange {
+    background-color: #F6673A;
+  }
+  .highlight-blue {
+    background-color: #18C8EB;
+  }
+  .highlight-green {
+    background-color: #C7EF2B;
+  }
+  .slide-subtitle {
+    font-family: 'Instrument Serif', serif;
+    font-weight: 400;
+    font-size: 4cqw;
+    line-height: 1.3;
+    color: #1a1a1a;
+    text-align: left;
+    max-width: 100%;
+    margin-top: 8cqw;
+  }
+  .slide-divider {
+    border: none;
+    border-top: 1px solid #1a1a1a;
+    margin: 3cqw 0;
+    position: relative;
+    overflow: visible;
+  }
+  .slide-divider::before,
+  .slide-divider::after {
+    content: '';
+    position: absolute;
+    top: -3px;
+    width: 6px;
+    height: 6px;
+    background: #1a1a1a;
+    border-radius: 50%;
+  }
+  .slide-divider::before {
+    left: -3px;
+  }
+  .slide-divider::after {
+    right: -3px;
+  }
+  .slide-box {
+    margin-top: 4cqw;
+    height: 20cqw;
+    padding: 2cqw 2cqw 2cqw 0;
+    display: flex;
+    align-items: stretch;
+    gap: 2cqw;
+  }
+  .slide-box-icon {
+    flex-shrink: 0;
+    height: 100%;
+    width: auto;
+  }
+  .slide-box-content {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    height: 100%;
+  }
+  .slide-box-title {
+    font-family: 'Barlow Condensed', sans-serif;
+    font-weight: 600;
+    font-size: 4cqw;
+    color: #1a1a1a;
+    flex: 1;
+  }
+  .slide-box-desc {
+    font-family: 'Instrument Serif', serif;
+    font-weight: 400;
+    font-size: 2.5cqw;
+    line-height: 1.3;
+    color: #1a1a1a;
+  }
+  .slide-meta {
+    font-family: 'Barlow Condensed', sans-serif;
+    font-weight: 600;
+    font-size: 2.5cqw;
+    color: #1a1a1a;
+    text-align: left;
+    margin-top: 12cqw;
+  }
+  .slide-cases {
+    display: flex;
+    gap: 2cqw;
+    margin-top: 2cqw;
+    flex: 1;
+  }
+  .slide-case {
+    flex: 1;
+    border: 1px solid #1a1a1a;
+    border-top: 3px solid;
+    padding: 2cqw;
+  }
+  .slide-case:nth-child(1) { border-top-color: #C7EF2B; }
+  .slide-case:nth-child(2) { border-top-color: #F6673A; }
+  .slide-case:nth-child(3) { border-top-color: #CE3C86; }
+  .slide-case:nth-child(4) { border-top-color: #764AF8; }
+  .slide-case:nth-child(5) { border-top-color: #007990; }
+  .slide-vdivider {
+    width: 1px;
+    background: #1a1a1a;
+    position: relative;
+    align-self: stretch;
+  }
+  .slide-vdivider::before,
+  .slide-vdivider::after {
+    content: '';
+    position: absolute;
+    left: -2.5px;
+    width: 6px;
+    height: 6px;
+    background: #1a1a1a;
+    border-radius: 50%;
+  }
+  .slide-vdivider::before {
+    top: -3px;
+  }
+  .slide-vdivider::after {
+    bottom: -3px;
+  }
+  .slide-case-toponly {
+    border-left: none;
+    border-right: none;
+    border-bottom: none;
+  }
+  .slide-case-logo {
+    width: 5cqw;
+    height: 5cqw;
+    object-fit: contain;
+    margin-bottom: 1.5cqw;
+  }
+  .slide-case-title {
+    font-family: 'Barlow Condensed', sans-serif;
+    font-weight: 600;
+    font-size: 2.5cqw;
+    color: #1a1a1a;
+  }
+  .slide-cases-footer {
+    padding: 2cqw 2cqw 2cqw 2cqw;
+    margin-top: 0;
+    border: none;
+    border-left: 3px solid #18C8EB;
+  }
+  .slide-cases-footer .slide-box-title {
+    font-size: 2.5cqw;
+    flex: none;
+  }
+  .slide-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 2cqw;
+    margin-top: 2.5cqw;
+    flex: 1;
+  }
+  .slide-grid-cell {
+    padding: 1.5cqw 2cqw;
+    border-left: 3px solid;
+  }
+  .slide-grid-cell:nth-of-type(1) { border-left-color: #CE3C86; }
+  .slide-grid-cell:nth-of-type(2) { border-left-color: #F6673A; }
+  .slide-grid-cell:nth-of-type(3) { border-left-color: #C7EF2B; }
+  .slide-grid-cell:nth-of-type(4) { border-left-color: #764AF8; }
+  .slide-grid-divider {
+    margin: 1.5cqw 0 0 0;
+  }
+  .slide-grid-svg {
+    width: 100%;
+    height: 4cqw;
+    margin-top: 1cqw;
+  }
+  .slide-stacked-rows {
+    display: flex;
+    flex-direction: column;
+    margin-top: 2.5cqw;
+    flex: 1;
+  }
+  .slide-two-col {
+    display: flex;
+    gap: 3cqw;
+  }
+  .slide-two-col-left {
+    flex: 0 0 auto;
+  }
+  .slide-two-col-right {
+    flex: 1;
+  }
+  .slide-topic-box {
+    padding: 0.8cqw 2cqw 0.8cqw 0;
+    display: flex;
+    align-items: center;
+    gap: 0.8cqw;
+  }
+  .slide-topic-box .slide-row-icon {
+    width: 1.8cqw;
+    height: 1.8cqw;
+    padding: 0.4cqw;
+  }
+  .slide-topic-box .slide-box-desc {
+    font-size: 1.35cqw;
+  }
+  .slide-row {
+    display: flex;
+    align-items: center;
+    justify-content: flex-start;
+    border-left: 3px solid;
+    padding: 0 0 0 2cqw;
+    min-height: 6cqw;
+  }
+  .slide-stacked-rows .slide-row:nth-of-type(1) { border-left-color: #C7EF2B; }
+  .slide-stacked-rows .slide-row:nth-of-type(2) { border-left-color: #F6673A; }
+  .slide-stacked-rows .slide-row:nth-of-type(3) { border-left-color: #CE3C86; }
+  .slide-stacked-rows .slide-row:nth-of-type(4) { border-left-color: #764AF8; }
+  .slide-divider-row {
+    margin: 2cqw 0 2cqw 1.5cqw;
+  }
+  .slide-row-icon {
+    width: 3.5cqw;
+    height: 3.5cqw;
+    flex-shrink: 0;
+    margin-right: 2cqw;
+    background: #1a1a1a;
+    padding: 0.8cqw;
+    box-sizing: content-box;
+  }
+  .slide-row-icon path,
+  .slide-row-icon rect,
+  .slide-row-icon circle {
+    stroke: #fff;
+  }
+  .slide-row-title {
+    font-family: 'Barlow Condensed', sans-serif;
+    font-weight: 600;
+    font-size: 2.5cqw;
+    color: #1a1a1a;
+    white-space: nowrap;
+    width: 40%;
+    flex-shrink: 0;
+  }
+  .slide-row-desc {
+    font-family: 'Instrument Serif', serif;
+    font-weight: 400;
+    font-size: 1.6cqw;
+    line-height: 1.3;
+    color: #1a1a1a;
+  }
+  .slide-cases-footer .slide-box-desc {
+    font-size: 1.8cqw;
+    margin-top: 1.5cqw;
+  }
+  .slide-case-desc {
+    font-family: 'Instrument Serif', serif;
+    font-weight: 400;
+    font-size: 1.8cqw;
+    line-height: 1.3;
+    color: #1a1a1a;
+    margin-top: 1cqw;
   }
   .slide-number {
     position: absolute;
@@ -225,45 +580,164 @@
       </div>
     </a>
     <nav id="menu">
-      <a href="#voices">VOICES</a>
-      <a href="#events">EVENTS</a>
-      <a href="#artifacts">ARTIFACTS</a>
+      <a href="#interviews" class="disabled">INTERVIEWS</a>
+      <a href="#playbooks" class="disabled">PLAYBOOKS</a>
+      <a href="#events" class="disabled">EVENTS</a>
+      <a href="#mentors" class="disabled">MENTORS</a>
     </nav>
   </div>
 
   <!-- Page: Home -->
-  <div id="page-home" class="page"></div>
+  <div id="page-home" class="page">
+    <div id="slides">
+      <div class="slide">
+        <div class="slide-header">
+          <div class="slide-logo-wrap"><svg class="slide-logo" viewBox="0 0 50 50" fill="none" xmlns="http://www.w3.org/2000/svg">
+            <path fill-rule="evenodd" clip-rule="evenodd" d="M2.82595 47.5227C2.66616 45.45 0.00295911 0.915318 0 0.280501C0 0.159442 1.73108 0.0590527 3.84684 0.0590527C7.31196 0.0590527 7.69369 0.109248 7.69664 0.575765C7.70256 2.88473 8.60805 33.8461 8.67019 33.9081C8.71458 33.9524 9.05783 27.3828 9.43068 19.3132C9.80057 11.2407 10.1823 3.60517 10.277 2.34735L10.4457 0.0590527H14.6594H18.8732L19.0596 2.93788C19.1602 4.52049 19.5094 11.9287 19.8349 19.3988C20.4948 34.5105 20.5895 36.037 20.6694 32.8334C20.699 31.6169 20.9179 24.2412 21.1576 16.4462C21.3944 8.65123 21.5926 1.77454 21.5956 1.16629L21.6015 0.0590527H25.3004H28.9993V1.46156C28.9993 2.2322 28.5347 10.6384 27.9636 20.137C27.3954 29.6356 26.774 40.2327 26.5817 43.6843L26.2355 49.9587H21.1073H15.9792L15.9703 48.9991C15.9437 46.3151 14.5588 17.7365 14.4493 17.6273C14.3813 17.5564 14.0913 23.7067 13.8102 31.295C13.5261 38.8804 13.2154 46.1822 13.1177 47.5227L12.9372 49.9587H7.9748H3.01237L2.82595 47.5227ZM30.4788 25V0L36.7669 0.118105C41.9247 0.21259 43.2681 0.327743 44.2387 0.74997C46.5616 1.76568 47.4937 2.56857 48.2335 3.60199C48.2335 3.60199 49.1212 4.78305 49.2692 6.11173C49.4171 7.44042 49.5621 12.159 49.5621 12.159C49.5592 17.2316 49.5089 17.7365 48.8756 19.139C48.1506 20.7452 46.8575 22.1537 45.4519 22.8652L44.5938 23.2993L46.1828 24.1555C48.0737 25.1713 49.2603 26.8897 49.7071 29.2577C50.1125 31.3984 50.0918 40.6844 49.6775 42.6361C48.9851 45.887 47.47 47.9184 44.8305 49.1319C43.4545 49.7638 42.8982 49.8169 36.9149 49.9055L30.4788 50V25ZM40.7174 42.5475C41.2293 41.9806 41.2885 41.3281 41.3684 35.2161C41.4512 29.1071 41.4098 28.4516 40.9245 27.8788C40.6315 27.5304 40.0249 27.1613 39.5781 27.055L38.7643 26.8631V35.0154V43.1676H39.4597C39.8385 43.1676 40.4066 42.8871 40.7174 42.5475ZM40.7558 19.3398C41.1849 18.6843 41.2973 17.7365 41.3832 14.1107C41.5045 8.82544 41.25 7.64438 39.9006 7.17196C39.3887 6.9948 38.9241 6.85012 38.8679 6.85012C38.8117 6.85012 38.7643 9.8382 38.7643 13.4936V20.137H39.4982C39.9657 20.137 40.4185 19.8506 40.7558 19.3398Z" fill="black"/>
+          </svg></div>
+          <div class="slide-title">WORK-BENCH: <span class="underline-green">THE AI GTM WORKSHOP</span></div>
+        </div>
+        <div class="slide-subtitle">The definitive <span class="highlight-green">enterprise</span> GTM resource that helps early-stage, AI-native founders learn best practices for selling AI into the enterprise.</div>
+        <div class="slide-meta">APRIL 2026 · CHRIS XU</div>
+        <span class="slide-number">1</span>
+      </div>
 
-  <!-- Page: Voices -->
-  <div id="page-voices" class="page"></div>
+      <div class="slide">
+        <div class="slide-title slide-title-full">AI IS <span class="underline-pink">REDEFINING</span> GO-TO-MARKET</div>
+        <div class="slide-subtitle">Enterprise GTM is being rewritten in real time. Work-Bench can <span class="highlight">lead</span> the conversation.</div>
+        <hr class="slide-divider">
+        <div class="slide-box">
+          <svg class="slide-box-icon" viewBox="0 0 120 104" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M106 52H110V104H106V52Z" fill="#764AF8"/><path d="M90 52H96V104H90V52Z" fill="#764AF8"/><path d="M73 52H80V104H73V52Z" fill="#764AF8"/><path d="M57 52H63V104H57V52Z" fill="#764AF8"/><path d="M41 52H47V104H41V52Z" fill="#764AF8"/><path d="M24 52H31V104H24V52Z" fill="#764AF8"/><path d="M8 52H14V104H8V52Z" fill="#764AF8"/><path d="M14 52H24V104H14V52Z" fill="#DED4FE"/><path d="M0 52H8V103H0V52Z" fill="#DED4FE"/><path d="M31 52H41V104H31V52Z" fill="#DED4FE"/><path d="M47 52H57V104H47V52Z" fill="#DED4FE"/><path d="M63 52H73V104H63V52Z" fill="#DED4FE"/><path d="M96 52H106V104H96V52Z" fill="#DED4FE"/><path d="M110 52H120V104H110V52Z" fill="#DED4FE"/><path d="M80 52H90V104H80V52Z" fill="#DED4FE"/><path d="M78 0H83V52H78V0Z" fill="#DED4FE"/><path d="M88 0H94V52H88V0Z" fill="#DED4FE"/><path d="M99 0H105V52H99V0Z" fill="#DED4FE"/><path d="M109 0H115V52H109V0Z" fill="#DED4FE"/><path d="M67 0H73V52H67V0Z" fill="#DED4FE"/><path d="M54 0H62V52H54V0Z" fill="#DED4FE"/><path d="M37 0H49V52H37V0Z" fill="#DED4FE"/><path d="M21 0H33V52H21V0Z" fill="#DED4FE"/><path d="M4 0H16V52H4V0Z" fill="#DED4FE"/><path d="M67 0H73V52H67V0Z" fill="#DED4FE"/><path d="M115 0H120V52H115V0Z" fill="#764AF8"/><path d="M105 0H109V52H105V0Z" fill="#764AF8"/><path d="M94 0H99V52H94V0Z" fill="#764AF8"/><path d="M83 0H88V52H83V0Z" fill="#764AF8"/><path d="M73 0H78V52H73V0Z" fill="#764AF8"/><path d="M62 0H67V52H62V0Z" fill="#764AF8"/><path d="M49 0H54V52H49V0Z" fill="#764AF8"/><path d="M33 0H37V52H33V0Z" fill="#764AF8"/><path d="M16 0H21V52H16V0Z" fill="#764AF8"/><path d="M0 0H4V52H0V0Z" fill="#764AF8"/></svg>
+          <div class="slide-box-content">
+            <div class="slide-box-title">WHY IT MATTERS</div>
+            <div class="slide-box-desc">AI is <span class="highlight">reshaping</span> conversations on build-vs-buy, pricing, and the B2B motion.<div style="height:0.5cqw"></div>Work-Bench can showcase and transform candid founder + enterprise-leader dialogue into a flywheel of signal, trust, and deal-flow.</div>
+          </div>
+        </div>
+        <span class="slide-number">2</span>
+      </div>
+
+      <div class="slide slide-flex">
+        <div class="slide-title slide-title-full">WHERE DO WE START?</div>
+        <div class="slide-subtitle" style="margin-top: 2.5cqw; font-size: 2.5cqw;">Start by building a content repository of AI GTM enterprise articles, video interviews, and playbooks.</div>
+        <div class="slide-grid">
+          <div class="slide-grid-cell"><div class="slide-case-title"><span class="highlight-pink">1. BUILD + SEED</span></div><div class="slide-case-desc">Build the Workshop website (like this one!). Migrate and categorize existing content within the new website. Provide an access point for users to sign up for the Enterprise Weekly newsletter.</div></div>
+          <div class="slide-grid-cell"><div class="slide-case-title"><span class="highlight-orange">2. CAPTURE</span></div><div class="slide-case-desc">Create new content, beginning with the first five case studies to generate practical insights via articles and playbooks, before layering in video interviews with enterprise leaders.</div></div>
+          <hr class="slide-divider slide-grid-divider">
+          <hr class="slide-divider slide-grid-divider">
+          <div class="slide-grid-cell"><div class="slide-case-title"><span class="highlight-green">3. FORMAT</span></div><div class="slide-case-desc">All content should be made accessible as text and audio, catering to user preference by using text-to-speech and speech-to-text models.</div></div>
+          <div class="slide-grid-cell"><div class="slide-case-title"><span class="highlight">4. SCHEDULE</span></div><div class="slide-case-desc">Define the operational system to scale and automate content creation, and build a content release calendar.</div></div>
+        </div>
+        <span class="slide-number">3</span>
+      </div>
+
+      <div class="slide slide-flex">
+        <div class="slide-title slide-title-full">HOW DO WE EXPAND?</div>
+        <div class="slide-subtitle" style="margin-top: 2.5cqw; font-size: 2.5cqw;">Build a <span class="highlight-green">1-on-1 mentorship program</span> by pairing a Work-Bench founder to an AI enterprise leader on a specific GTM need. Across the 3-step program, capture the journey through a video series.</div>
+        <div class="slide-two-col" style="margin-top: 3cqw; flex: 1;">
+          <div class="slide-two-col-left">
+            <div class="slide-case-title" style="font-size: 3.5cqw;"><span class="underline-green" style="text-decoration-thickness: 2px;">GTM TOPICS</span></div>
+            <div class="slide-stacked-rows" style="margin-top: 1.5cqw; gap: 0;">
+              <div class="slide-topic-box"><svg class="slide-row-icon" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M12 20V10" stroke="#1a1a1a" stroke-width="1.5" stroke-linecap="round"/><path d="M6 20V4" stroke="#1a1a1a" stroke-width="1.5" stroke-linecap="round"/><path d="M18 20V16" stroke="#1a1a1a" stroke-width="1.5" stroke-linecap="round"/><path d="M3 20H21" stroke="#1a1a1a" stroke-width="1.5" stroke-linecap="round"/></svg><div class="slide-box-desc">GTM Engineering / RevOps</div></div>
+              <div class="slide-topic-box"><svg class="slide-row-icon" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M22 12H18L15 21L9 3L6 12H2" stroke="#1a1a1a" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg><div class="slide-box-desc">Enterprise Sales Strategy</div></div>
+              <div class="slide-topic-box"><svg class="slide-row-icon" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M4 4H10V10H4V4Z" stroke="#1a1a1a" stroke-width="1.5"/><path d="M14 4H20V10H14V4Z" stroke="#1a1a1a" stroke-width="1.5"/><path d="M4 14H10V20H4V14Z" stroke="#1a1a1a" stroke-width="1.5"/><path d="M17 14V20" stroke="#1a1a1a" stroke-width="1.5" stroke-linecap="round"/><path d="M14 17H20" stroke="#1a1a1a" stroke-width="1.5" stroke-linecap="round"/></svg><div class="slide-box-desc">Lead Generation and BD</div></div>
+              <div class="slide-topic-box"><svg class="slide-row-icon" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M20 21V19C20 16.7909 18.2091 15 16 15H8C5.79086 15 4 16.7909 4 19V21" stroke="#1a1a1a" stroke-width="1.5" stroke-linecap="round"/><circle cx="12" cy="7" r="4" stroke="#1a1a1a" stroke-width="1.5"/></svg><div class="slide-box-desc">Enterprise Customer Success</div></div>
+              <div class="slide-topic-box"><svg class="slide-row-icon" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M14.7 6.3a1 1 0 0 0 0 1.4l1.6 1.6a1 1 0 0 0 1.4 0l3.77-3.77a6 6 0 0 1-7.94 7.94l-6.91 6.91a2.12 2.12 0 0 1-3-3l6.91-6.91a6 6 0 0 1 7.94-7.94l-3.76 3.76z" stroke="#1a1a1a" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg><div class="slide-box-desc">Technical Pre-Sales</div></div>
+              <div class="slide-topic-box"><svg class="slide-row-icon" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M21 16V8a2 2 0 0 0-1-1.73l-7-4a2 2 0 0 0-2 0l-7 4A2 2 0 0 0 3 8v8a2 2 0 0 0 1 1.73l7 4a2 2 0 0 0 2 0l7-4A2 2 0 0 0 21 16z" stroke="#1a1a1a" stroke-width="1.5"/><path d="M3.27 6.96L12 12.01l8.73-5.05" stroke="#1a1a1a" stroke-width="1.5"/><path d="M12 22.08V12" stroke="#1a1a1a" stroke-width="1.5"/></svg><div class="slide-box-desc">Post-Sales Implementation / Forward-Deployed Engineering</div></div>
+            </div>
+          </div>
+          <div class="slide-vdivider"></div>
+          <div class="slide-two-col-right">
+            <div class="slide-case-title" style="font-size: 3.5cqw;"><span class="underline-pink" style="text-decoration-thickness: 2px;">THE MENTORSHIP PROGRAM</span></div>
+            <div class="slide-stacked-rows" style="margin-top: 1.5cqw; gap: 0;">
+              <div class="slide-topic-box" style="flex-direction: column; align-items: flex-start;"><div class="slide-case-title" style="font-size: 1.8cqw;">BUILDING PARTNERSHIPS</div><div class="slide-box-desc">Build a mentorship ecosystem and match Work-Bench founders with relevant enterprise leaders.</div></div>
+              <div class="slide-topic-box" style="flex-direction: column; align-items: flex-start;"><div class="slide-case-title" style="font-size: 1.8cqw;">MILESTONE 1: PROBLEM + ADVICE</div><div class="slide-box-desc">Coordinate the first founder and mentor meeting at the Work-Bench office. Let the mentor listen, pressure-test, and advise the founder.</div></div>
+              <div class="slide-topic-box" style="flex-direction: column; align-items: flex-start;"><div class="slide-case-title" style="font-size: 1.8cqw;">MILESTONE 2: CHECK-IN</div><div class="slide-box-desc">Bring the two back together after 90 days. Let them discuss what's working, what's stalled, and what was surfaced. The mentor can help open doors if useful.</div></div>
+              <div class="slide-topic-box" style="flex-direction: column; align-items: flex-start;"><div class="slide-case-title" style="font-size: 1.8cqw;">MILESTONE 3: RESULTS + TAKEAWAYS</div><div class="slide-box-desc">On day 180, bring back the duo for a final time for an honest retro. Talk about the wins, losses, and transferrable lessons other founders can use.</div></div>
+            </div>
+          </div>
+        </div>
+        <span class="slide-number">4</span>
+      </div>
+
+      <div class="slide">
+        <div class="slide-title slide-title-full">FIVE CASE STUDIES</div>
+        <div class="slide-cases">
+          <div class="slide-case"><img class="slide-case-logo" src="public/Anthropic.svg" alt="Anthropic"><div class="slide-case-title">ANTHROPIC</div><div class="slide-case-desc">Aligning Product Stability & Safety with Enterprise GTM</div></div>
+          <div class="slide-case"><img class="slide-case-logo" src="public/Palantir.svg" alt="Palantir"><div class="slide-case-title">PALANTIR</div><div class="slide-case-desc">How the Deployment Strategist Role Redefined Implementation</div></div>
+          <div class="slide-case"><img class="slide-case-logo" src="public/Clay.png" alt="Clay"><div class="slide-case-title">CLAY</div><div class="slide-case-desc">The Rise of the GTM Engineer</div></div>
+          <div class="slide-case"><img class="slide-case-logo" src="public/Abridge.svg" alt="Abridge"><div class="slide-case-title">ABRIDGE</div><div class="slide-case-desc">Proving Ambient AI Value to Clinicians</div></div>
+          <div class="slide-case"><img class="slide-case-logo" src="public/Perplexity.svg" alt="Perplexity"><div class="slide-case-title">PERPLEXITY</div><div class="slide-case-desc">Experimentation and Speed as Your Competitive Advantage</div></div>
+        </div>
+        <hr class="slide-divider">
+        <div class="slide-cases-footer">
+          <div class="slide-box-title">WHY THESE FIVE?</div>
+          <div class="slide-box-desc">They span the GTM motions most rewritten by AI: safety-gated enterprise sales, deployed services, RevOps engineering, clinical/regulated adoption, and feature speed. Four of five are already in the Work-Bench network, and I have direct connection with Perplexity.</div>
+        </div>
+        <span class="slide-number">5</span>
+      </div>
+
+      <div class="slide slide-flex">
+        <div class="slide-title slide-title-full">MEET FOUNDERS <span class="underline-orange">WHERE THEY ARE</span></div>
+        <div class="slide-subtitle" style="margin-top: 2.5cqw;">AI-native founders consume GTM content through <span class="highlight-orange">diverse</span> channels.</div>
+        <div class="slide-stacked-rows">
+          <div class="slide-row"><svg class="slide-row-icon" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M21 15C21 15.5304 20.7893 16.0391 20.4142 16.4142C20.0391 16.7893 19.5304 17 19 17H7L3 21V5C3 4.46957 3.21071 3.96086 3.58579 3.58579C3.96086 3.21071 4.46957 3 5 3H19C19.5304 3 20.0391 3.21071 20.4142 3.58579C20.7893 3.96086 21 4.46957 21 5V15Z" stroke="#1a1a1a" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg><div class="slide-row-title">SOCIAL MEDIA DISTRIBUTION</div><div class="slide-row-desc">Provide topical and timely GTM content through social media posts, especially X, LinkedIn, and YouTube channels.</div></div>
+          <hr class="slide-divider slide-divider-row">
+          <div class="slide-row"><svg class="slide-row-icon" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg"><rect x="2" y="3" width="20" height="14" rx="1" stroke="#1a1a1a" stroke-width="1.5"/><path d="M8 21H16" stroke="#1a1a1a" stroke-width="1.5" stroke-linecap="round"/><path d="M12 17V21" stroke="#1a1a1a" stroke-width="1.5" stroke-linecap="round"/><path d="M7 10L10 8L13 10L17 7" stroke="#1a1a1a" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg><div class="slide-row-title">INDUSTRY CONFERENCES</div><div class="slide-row-desc">In-person awareness campaigns or content recording opportunities at AI, enterprise, and vertical summits or hackathons with high founder density.</div></div>
+          <hr class="slide-divider slide-divider-row">
+          <div class="slide-row"><svg class="slide-row-icon" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M17 21V19C17 17.9391 16.5786 16.9217 15.8284 16.1716C15.0783 15.4214 14.0609 15 13 15H5C3.93913 15 2.92172 15.4214 2.17157 16.1716C1.42143 16.9217 1 17.9391 1 19V21" stroke="#1a1a1a" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/><path d="M9 11C11.2091 11 13 9.20914 13 7C13 4.79086 11.2091 3 9 3C6.79086 3 5 4.79086 5 7C5 9.20914 6.79086 11 9 11Z" stroke="#1a1a1a" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/><path d="M23 21V19C22.9993 18.1137 22.7044 17.2528 22.1614 16.5523C21.6184 15.8519 20.8581 15.3516 20 15.13" stroke="#1a1a1a" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/><path d="M16 3.13C16.8604 3.35031 17.623 3.85071 18.1676 4.55232C18.7122 5.25392 19.0078 6.11683 19.0078 7.005C19.0078 7.89318 18.7122 8.75608 18.1676 9.45769C17.623 10.1593 16.8604 10.6597 16 10.88" stroke="#1a1a1a" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg><div class="slide-row-title">VC & ACCELERATOR PARTNER EVENTS</div><div class="slide-row-desc">Partner with NY-based VCs, accelerators, and enterprises to host tech community events to discuss and advertise AI GTM content.</div></div>
+          <hr class="slide-divider slide-divider-row">
+          <div class="slide-row"><svg class="slide-row-icon" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M12 2L2 7L12 12L22 7L12 2Z" stroke="#1a1a1a" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/><path d="M2 17L12 22L22 17" stroke="#1a1a1a" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/><path d="M2 12L12 17L22 12" stroke="#1a1a1a" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg><div class="slide-row-title">WORK-BENCH MCP ACCESS</div><div class="slide-row-desc">Expose the content library to agents via an MCP endpoint - founders' AI assistants can surface relevant playbooks on demand.</div></div>
+        </div>
+        <span class="slide-number">6</span>
+      </div>
+
+      <div class="slide">
+        <div class="slide-title slide-title-full">WHAT IT TAKES TO <span class="underline-green">LAUNCH</span></div>
+        <div class="slide-subtitle" style="margin-top: 2.5cqw;">The timeline, budget, and resources to launch <span class="highlight-green">Version 1.0 in 30 days</span>.</div>
+        <div class="slide-cases">
+          <div class="slide-case slide-case-toponly">
+            <div class="slide-case-title">TIMELINE</div>
+            <div class="slide-case-desc">1. Build the website</div>
+            <div class="slide-case-desc">2. Create the content (don't scale yet)</div>
+            <div class="slide-case-desc">3. Begin building scalable content systems</div>
+            <div class="slide-case-desc">4. Start on partnership ecosystem for mentorship program</div>
+          </div>
+          <div class="slide-vdivider"></div>
+          <div class="slide-case slide-case-toponly">
+            <div class="slide-case-title">RESOURCES</div>
+            <div class="slide-case-desc">• Convert part of the Work-Bench office to a filmable "Workshop" studio</div>
+            <div class="slide-case-desc">• Videographer/Editor OR upskill using video, audio, and design editing software</div>
+            <div class="slide-case-desc">• Podcast microphones + transmitters, mirrorless video camera, lighting</div>
+            <div class="slide-case-desc">• Claude Code, Figma, content management platforms</div>
+            <div class="slide-case-desc">• Access to industry conferences, events, or people</div>
+          </div>
+          <div class="slide-vdivider"></div>
+          <div class="slide-case slide-case-toponly">
+            <div class="slide-case-title">BUDGET</div>
+            <div class="slide-case-desc">• Production Equipment + Services: &lt;$7K</div>
+            <div class="slide-case-desc">• Workshop Space Conversion: $3K</div>
+            <div class="slide-case-desc">• Conference or Event Access: $3K</div>
+            <div class="slide-case-desc">• Annual Software and Tooling: $3K</div>
+            <div class="slide-case-desc" style="margin-top: 1.5cqw; font-weight: 600; font-family: 'Barlow Condensed', sans-serif;">TOTAL ESTIMATED COST: ~$15K</div>
+          </div>
+        </div>
+        <span class="slide-number">7</span>
+      </div>
+
+    </div>
+  </div>
+
+  <!-- Page: Interviews -->
+  <div id="page-interviews" class="page"></div>
+
+  <!-- Page: Mentors -->
+  <div id="page-mentors" class="page"></div>
 
   <!-- Page: Events -->
   <div id="page-events" class="page"></div>
 
   <!-- Page: Artifacts -->
-  <div id="page-artifacts" class="page">
-    <div id="slides">
-      <div class="slide"><span class="slide-number">1</span></div>
-
-      <div class="slide"><span class="slide-number">2</span></div>
-
-      <div class="slide"><span class="slide-number">3</span></div>
-
-      <div class="slide"><span class="slide-number">4</span></div>
-
-      <div class="slide"><span class="slide-number">5</span></div>
-
-      <div class="slide"><span class="slide-number">6</span></div>
-
-      <div class="slide"><span class="slide-number">7</span></div>
-
-      <div class="slide"><span class="slide-number">8</span></div>
-
-      <div class="slide"><span class="slide-number">9</span></div>
-
-      <div class="slide"><span class="slide-number">10</span></div>
-    </div>
-  </div>
+  <div id="page-playbooks" class="page"></div>
 
   <canvas id="trail-canvas"></canvas>
   <script>
@@ -295,6 +769,44 @@
 
     window.addEventListener('hashchange', navigate);
     navigate();
+
+    // Slide navigation arrows
+    (function() {
+      var slides = document.querySelectorAll('.slide');
+      slides.forEach(function(slide, i) {
+        var wrapper = document.createElement('div');
+        wrapper.className = 'slide-wrapper';
+        slide.parentNode.insertBefore(wrapper, slide);
+        wrapper.appendChild(slide);
+
+        var nav = document.createElement('div');
+        nav.className = 'slide-nav';
+
+        if (i > 0) {
+          var upBtn = document.createElement('button');
+          upBtn.className = 'slide-nav-btn';
+          upBtn.innerHTML = '<svg viewBox="0 0 24 48" width="18" height="44" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="12" y1="44" x2="12" y2="10"/><path d="M5 14Q8 15 12 4Q16 15 19 14" stroke-width="3"/></svg>';
+          upBtn.onclick = function() {
+            var prevWrapper = wrapper.previousElementSibling;
+            if (prevWrapper) prevWrapper.scrollIntoView({ behavior: 'smooth', block: 'center' });
+          };
+          nav.appendChild(upBtn);
+        }
+
+        if (i < slides.length - 1) {
+          var downBtn = document.createElement('button');
+          downBtn.className = 'slide-nav-btn';
+          downBtn.innerHTML = '<svg viewBox="0 0 24 48" width="18" height="44" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="12" y1="4" x2="12" y2="38"/><path d="M5 34Q8 33 12 44Q16 33 19 34" stroke-width="3"/></svg>';
+          downBtn.onclick = function() {
+            var nextWrapper = wrapper.nextElementSibling;
+            if (nextWrapper) nextWrapper.scrollIntoView({ behavior: 'smooth', block: 'center' });
+          };
+          nav.appendChild(downBtn);
+        }
+
+        wrapper.appendChild(nav);
+      });
+    })();
 
     // Trail canvas
     const canvas = document.getElementById('trail-canvas');
