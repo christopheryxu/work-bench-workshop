@@ -304,6 +304,14 @@
   .highlight-green {
     background-color: #C7EF2B;
   }
+  .highlight, .highlight-pink, .highlight-orange, .highlight-blue, .highlight-green {
+    transition: transform 0.3s ease;
+    display: inline-block;
+    cursor: pointer;
+  }
+  .highlight:hover, .highlight-pink:hover, .highlight-orange:hover, .highlight-blue:hover, .highlight-green:hover {
+    transform: scale(1.05);
+  }
   .slide-subtitle {
     font-family: 'Instrument Serif', serif;
     font-weight: 400;
@@ -349,6 +357,11 @@
     flex-shrink: 0;
     height: 100%;
     width: auto;
+    transition: filter 0.3s ease;
+    cursor: pointer;
+  }
+  .slide-box-icon:hover {
+    filter: invert(1);
   }
   .slide-box-content {
     flex: 1;
@@ -389,6 +402,15 @@
     border: 1px solid #1a1a1a;
     border-top: 3px solid;
     padding: 2cqw;
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+  }
+  .slide-case:not(.slide-case-toponly) {
+    cursor: pointer;
+  }
+  .slide-case:not(.slide-case-toponly):hover {
+    transform: scale(1.05);
+    box-shadow: 0 4px 16px rgba(0,0,0,0.15);
+    z-index: 1;
   }
   .slide-case:nth-child(1) { border-top-color: #C7EF2B; }
   .slide-case:nth-child(2) { border-top-color: #F6673A; }
@@ -698,9 +720,9 @@
           <div class="slide-case slide-case-toponly">
             <div class="slide-case-title">TIMELINE</div>
             <div class="slide-case-desc">1. Build the website</div>
-            <div class="slide-case-desc">2. Create the content (don't scale yet)</div>
+            <div class="slide-case-desc">2. Conduct the outreach and create the content (don't scale yet)</div>
             <div class="slide-case-desc">3. Begin building scalable content systems</div>
-            <div class="slide-case-desc">4. Start on partnership ecosystem for mentorship program</div>
+            <div class="slide-case-desc">4. Start on partnership ecosystem and creating the physical space for the mentorship program</div>
           </div>
           <div class="slide-vdivider"></div>
           <div class="slide-case slide-case-toponly">
@@ -708,7 +730,7 @@
             <div class="slide-case-desc">• Convert part of the Work-Bench office to a filmable "Workshop" studio</div>
             <div class="slide-case-desc">• Videographer/Editor OR upskill using video, audio, and design editing software</div>
             <div class="slide-case-desc">• Podcast microphones + transmitters, mirrorless video camera, lighting</div>
-            <div class="slide-case-desc">• Claude Code, Figma, content management platforms</div>
+            <div class="slide-case-desc">• Claude Code, Figma, ElevenLabs, content management platforms</div>
             <div class="slide-case-desc">• Access to industry conferences, events, or people</div>
           </div>
           <div class="slide-vdivider"></div>
@@ -821,7 +843,7 @@
     let lastHole = null;
     let overSlide = false;
 
-    document.querySelectorAll('.slide').forEach(function(el) {
+    document.querySelectorAll('.slide, .slide-nav-btn').forEach(function(el) {
       el.addEventListener('mouseenter', function() { overSlide = true; lastHole = null; });
       el.addEventListener('mouseleave', function() { overSlide = false; });
     });
