@@ -324,7 +324,8 @@
   }
   .slide-divider {
     border: none;
-    border-top: 1px solid #1a1a1a;
+    height: max(0.15cqw, 1px);
+    background: #1a1a1a;
     margin: 3cqw 0;
     position: relative;
     overflow: visible;
@@ -333,17 +334,18 @@
   .slide-divider::after {
     content: '';
     position: absolute;
-    top: -3px;
-    width: 6px;
-    height: 6px;
+    top: 50%;
+    transform: translateY(-50%);
+    width: max(0.8cqw, 3px);
+    height: max(0.8cqw, 3px);
     background: #1a1a1a;
     border-radius: 50%;
   }
   .slide-divider::before {
-    left: -3px;
+    left: calc(-1 * max(0.4cqw, 1.5px));
   }
   .slide-divider::after {
-    right: -3px;
+    right: calc(-1 * max(0.4cqw, 1.5px));
   }
   .slide-box {
     margin-top: 4cqw;
@@ -418,7 +420,7 @@
   .slide-case:nth-child(4) { border-top-color: #764AF8; }
   .slide-case:nth-child(5) { border-top-color: #007990; }
   .slide-vdivider {
-    width: 1px;
+    width: max(0.15cqw, 1px);
     background: #1a1a1a;
     position: relative;
     align-self: stretch;
@@ -427,17 +429,18 @@
   .slide-vdivider::after {
     content: '';
     position: absolute;
-    left: -2.5px;
-    width: 6px;
-    height: 6px;
+    left: 50%;
+    transform: translateX(-50%);
+    width: max(0.8cqw, 3px);
+    height: max(0.8cqw, 3px);
     background: #1a1a1a;
     border-radius: 50%;
   }
   .slide-vdivider::before {
-    top: -3px;
+    top: calc(-1 * max(0.4cqw, 1.5px));
   }
   .slide-vdivider::after {
-    bottom: -3px;
+    bottom: calc(-1 * max(0.4cqw, 1.5px));
   }
   .slide-case-toponly {
     border-left: none;
@@ -582,7 +585,7 @@
     font-size: 1.4cqw;
   }
   .timeline-desc {
-    font-size: 1.35cqw;
+    font-size: 1.55cqw;
   }
   .slide-number {
     position: absolute;
@@ -592,6 +595,106 @@
     font-weight: 600;
     font-size: 2.5cqw;
     color: #1a1a1a;
+  }
+  #hamburger {
+    display: none;
+  }
+  #mobile-menu {
+    display: none;
+  }
+  @media (max-width: 768px) {
+    .slide-nav-btn {
+      width: 24px;
+      height: 44px;
+    }
+    .slide-nav-btn svg {
+      width: 10px;
+      height: 24px;
+    }
+    #menubar {
+      height: 50px;
+      top: 10px;
+    }
+    #logo {
+      height: 31px;
+    }
+    #wrench {
+      height: 12px;
+      width: 12px;
+      margin-left: 5px;
+    }
+    #title {
+      margin-left: 4px;
+      height: 36px;
+    }
+    #title span:first-child {
+      font-size: 13px;
+    }
+    #title span:last-child {
+      font-size: 23px;
+    }
+    #menu {
+      display: none;
+    }
+    #hamburger {
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      align-items: center;
+      gap: 3px;
+      margin-left: auto;
+      width: 50px;
+      border: none;
+      border-left: 1px solid #1a1a1a;
+      border-right: 1px solid #1a1a1a;
+      background: transparent;
+      cursor: pointer;
+      height: 100%;
+      flex-shrink: 0;
+    }
+    #hamburger span {
+      display: block;
+      width: 18px;
+      height: 2px;
+      background: #1a1a1a;
+    }
+    #mobile-menu {
+      display: none;
+      position: absolute;
+      top: 100%;
+      right: 0;
+      background: #fff;
+      border: 1px solid #1a1a1a;
+      flex-direction: column;
+      min-width: 160px;
+    }
+    #mobile-menu.open {
+      display: flex;
+    }
+    #mobile-menu a {
+      font-family: 'Barlow Condensed', sans-serif;
+      font-weight: 600;
+      font-size: 14px;
+      text-transform: uppercase;
+      text-decoration: none;
+      color: #1a1a1a;
+      letter-spacing: 0.05em;
+      padding: 10px 16px;
+      border-top: 1px solid #1a1a1a;
+      transition: color 0.2s ease, background-color 0.2s ease;
+    }
+    #mobile-menu a:first-child {
+      border-top: none;
+    }
+    #mobile-menu a:hover,
+    #mobile-menu a.active {
+      color: #fff;
+      background-color: #1a1a1a;
+    }
+    #mobile-menu a.disabled {
+      color: #b0b0b0;
+      pointer-events: none;
+    }
   }
 </style>
 </head>
@@ -610,6 +713,15 @@
       </div>
     </a>
     <nav id="menu">
+      <a href="#interviews" class="disabled">INTERVIEWS</a>
+      <a href="#playbooks" class="disabled">PLAYBOOKS</a>
+      <a href="#events" class="disabled">EVENTS</a>
+      <a href="#mentors" class="disabled">MENTORS</a>
+    </nav>
+    <button id="hamburger" onclick="document.getElementById('mobile-menu').classList.toggle('open')">
+      <span></span><span></span><span></span>
+    </button>
+    <nav id="mobile-menu">
       <a href="#interviews" class="disabled">INTERVIEWS</a>
       <a href="#playbooks" class="disabled">PLAYBOOKS</a>
       <a href="#events" class="disabled">EVENTS</a>
@@ -727,12 +839,11 @@
         <div class="slide-cases">
           <div class="slide-case slide-case-toponly">
             <div class="slide-case-title">TIMELINE</div>
-            <div class="slide-case-desc"><span class="timeline-day">DAY 1-3:</span> <span class="timeline-desc">Build and organize the website, gather necessary resources.</span></div>
-            <div class="slide-case-desc"><span class="timeline-day">DAY 4-7:</span> <span class="timeline-desc">Conduct the outreach and set up initial content workflow.</span></div>
-            <div class="slide-case-desc"><span class="timeline-day">DAY 8-14:</span> <span class="timeline-desc">Create and edit the content.</span></div>
-            <div class="slide-case-desc"><span class="timeline-day">DAY 15-21:</span> <span class="timeline-desc">Format the content and integrate into the website. Begin social media campaign for distribution.</span></div>
-            <div class="slide-case-desc"><span class="timeline-day">DAY 21-29:</span> <span class="timeline-desc">Start scaling content system, continue outreach to build partner ecosystem. Set up the physical space for the mentorship program.</span></div>
-            <div class="slide-case-desc"><span class="timeline-day">DAY 30:</span> <span class="timeline-desc">LAUNCH! Gather feedback and metrics.</span></div>
+            <div class="slide-case-desc"><span class="timeline-desc">1. Build and organize the website, gather necessary resources.</span></div>
+            <div class="slide-case-desc"><span class="timeline-desc">2. Conduct the outreach and set up initial content workflow.</span></div>
+            <div class="slide-case-desc"><span class="timeline-desc">3. Create and edit the content.</span></div>
+            <div class="slide-case-desc"><span class="timeline-desc">4. Format the content and integrate into the website. Begin social media campaign for distribution.</span></div>
+            <div class="slide-case-desc"><span class="timeline-desc">5. LAUNCH! Gather feedback and metrics. Begin outreach for mentorship program.</span></div>
           </div>
           <div class="slide-vdivider"></div>
           <div class="slide-case slide-case-toponly">
